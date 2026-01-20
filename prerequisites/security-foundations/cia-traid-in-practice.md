@@ -13,11 +13,12 @@ Not as definitions to memorize —
 but as a way to consistently ask:
 
 > “What could go wrong in this system?”
+> Specifically: what could go wrong from a security outcome perspective.
 
 ---
 
 ## CIA Is a Thinking Tool, Not a Checklist
-
+CIA does not tell you how attacks happen — it tells you what failed when they do.
 Every system you will ever analyze can fail in only three fundamental ways:
 
 1. Someone can **see** something they shouldn’t  
@@ -65,8 +66,8 @@ You could encrypt all notes perfectly and still fail confidentiality if:
 - Admin tools expose user data
 - Debug endpoints return raw note content
 
-Encryption protects data from *outsiders*.  
-Access control protects data from *insiders*.
+Encryption primarily protects data from *unauthorized access paths*.
+Access control protects data from *unauthorized actors.*
 
 Many security failures happen because engineers assume one is enough.
 
@@ -81,7 +82,7 @@ This is why confidentiality appears again and again in discussions about:
 
 ## Integrity — “Who Can Change This?”
 
-Integrity is about preventing **unauthorized modification**.
+Integrity is about ensuring systems and data change only in intended ways.
 
 In our notes app, integrity means:
 - Other users cannot edit your notes
@@ -134,13 +135,13 @@ Availability problems don’t always look like attacks.
 A misconfiguration, an expired certificate, or an unhandled edge case
 can have the same effect as a deliberate attack.
 
-That’s why availability is a **security concern**, not just an operations concern.
+That’s why availability is a **security concern**, not just an operations concern. If a failure can be triggered, amplified, or exploited by users or attackers, it belongs in security.
 
 ---
 
 ## CIA Is About Tradeoffs
 
-You cannot maximize confidentiality, integrity, and availability at the same time.
+You cannot maximize confidentiality, integrity, and availability at the same time. Security engineering is the practice of choosing which dimension to favor — consciously and transparently.
 
 For example:
 - Strong authentication improves integrity but may hurt availability
@@ -157,8 +158,8 @@ They are expected to **recognize and explain them**.
 As you move through this repository, CIA will keep reappearing:
 
 - TLS → Confidentiality and Integrity
-- Authentication → Integrity
-- Authorization → Integrity
+- Authentication → Confidentiality and Integrity
+- Authorization → Confidentiality and Integrity
 - Rate limiting → Availability
 - Backups → Availability and Integrity
 - Logging → Confidentiality tradeoffs
@@ -181,7 +182,7 @@ You can say:
 
 Interviewers are not looking for perfect answers.
 They are looking for **structured thinking**.
-
+Even partial answers framed through CIA are better than unstructured guesses.
 ---
 
 ## When You’re Ready to Move On
